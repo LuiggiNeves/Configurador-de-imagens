@@ -1,0 +1,42 @@
+/* Seu CSS existente para o nav */
+header {
+    width: 100%;
+    background-color: var(--nav-color); /* Adicione uma cor de fundo se desejar */
+    padding: 10px; /* Adicione um espaçamento interno conforme necessário */
+    box-shadow: 0px -13px 10px 15px rgba(0, 0, 0, 0.566);
+
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.centro {
+    text-align: center;
+    width: 100%;
+    line-height: 40px;
+    color: #fff;
+}
+
+.direita img {
+    width: 40px;
+    pointer-events: none;
+}
+
+@keyframes rotateGear {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.direita img {
+    width: 40px;
+    animation: rotateGear 5s linear infinite; /* Ajuste conforme necessário */
+}
