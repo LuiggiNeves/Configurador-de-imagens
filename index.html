@@ -13,9 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
-    <script>
-        carregarConfiguracoes();
-    </script>
+
 </head>
 <body>
     <header>
@@ -29,7 +27,7 @@
         <div class="container_main">
             <div class="container_drop">
                 <div class="drop-container" id="dropContainer">
-                    <input type="file" name="fileInput" id="fileInput" accept="image/*" />
+                    <input type="file" name="fileInput" id="fileInput" accept="image/*" multiple/>
                 </div>
             </div>
             <div class="container-inputs-buttons">
@@ -55,7 +53,7 @@
                             <div>
                                 <p><strong>Tipo de arquivo</strong></p>
                                 <label>
-                                    <input type="radio" name="tipo_arquivo" value="jpeg" checked> JPEG
+                                    <input type="radio" name="tipo_arquivo" value="jpeg" checked> JPG
                                 </label>
                                 <label>
                                     <input type="radio" name="tipo_arquivo" value="png"> PNG
@@ -87,13 +85,31 @@
 
         <p>Facilitar a conversão de tipos de arquivos e tamanhos para colocar em sistemas, exemplo o <strong>Gplus cardápio</strong>.</p>
         <p>@LuiggiNeves</p>
-        <p>@Gabriel</p>
-        <p>@André</p>
     </footer>
     <script src="view/js/index.js"></script>
     <script src="view/js/requisicoes.js"></script>
     <script src="view/js/configsalvas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>carregarConfiguracoes();</script>
+    <script>
+        // Seleciona todos os inputs do tipo radio com name="tipo_arquivo"
+var radioButtons = document.querySelectorAll('input[name="tipo_arquivo"]');
+
+// Inicializa uma variável para armazenar o valor selecionado
+var valorSelecionado = "";
+
+// Itera sobre todos os radio buttons
+radioButtons.forEach(function(radioButton) {
+    // Verifica se o radio button está marcado
+    if (radioButton.checked) {
+        // Se estiver marcado, armazena o valor selecionado
+        valorSelecionado = radioButton.value;
+    }
+});
+
+// Agora valorSelecionado contém o valor do radio button selecionado
+console.log("O valor do radio button selecionado é: " + valorSelecionado);
+    </script>
 
 
 </body>

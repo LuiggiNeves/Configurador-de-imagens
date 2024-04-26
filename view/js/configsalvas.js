@@ -36,7 +36,6 @@ function carregarConfiguracoes() {
         document.getElementById('altura').value = configuracoes.altura;
         document.getElementById('largura').value = configuracoes.largura;
 
-        alert('Configurações carregadas com sucesso!');
     } else {
         alert('Nenhuma configuração salva encontrada.');
     }

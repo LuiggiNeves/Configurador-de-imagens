@@ -1,24 +1,26 @@
 <?php
 
 if (isset($_GET['funcao'])) {
-
-
+    $funcao = $_GET['funcao'];
+    echo "Função recebida: " . $funcao;
 } else {
+}
 
+if (isset($_GET['altura']) && isset($_GET['largura'])) {
+    $altura = $_GET['altura'];
+    $largura = $_GET['largura'];
+    $caminhoOriginal = 'imagem-originais';
+    $caminhoDestino = 'imagem-convertidas/cut';
 
+    echo "Altura: " . $altura . ", Largura: " . $largura;
+    redimensionarImagem($caminhoOriginal, $caminhoDestino, $largura, $altura);
 }
 
 function redimensionarImagem($caminhoOriginal, $caminhoDestino, $novaLargura, $novaAltura) {
-    // Obtém informações sobre a imagem original
     list($larguraOriginal, $alturaOriginal) = getimagesize($caminhoOriginal);
-
-    // Cria uma nova imagem vazia com o tamanho desejado
     $novaImagem = imagecreatetruecolor($novaLargura, $novaAltura);
-
-    // Determina o tipo da imagem original
     $tipoOriginal = exif_imagetype($caminhoOriginal);
 
-    // Carrega a imagem original com base no tipo
     switch ($tipoOriginal) {
         case IMAGETYPE_JPEG:
             $imagemOriginal = imagecreatefromjpeg($caminhoOriginal);
@@ -29,15 +31,12 @@ function redimensionarImagem($caminhoOriginal, $caminhoDestino, $novaLargura, $n
         case IMAGETYPE_GIF:
             $imagemOriginal = imagecreatefromgif($caminhoOriginal);
             break;
-        // Adicione mais casos conforme necessário para outros tipos de imagem
         default:
-            return false; // Tipo de imagem não suportado
+            return false;
     }
 
-    // Copia a região desejada da imagem original para a nova imagem
     imagecopyresampled($novaImagem, $imagemOriginal, 0, 0, 0, 0, $novaLargura, $novaAltura, $larguraOriginal, $alturaOriginal);
 
-    // Salva a nova imagem
     switch ($tipoOriginal) {
         case IMAGETYPE_JPEG:
             imagejpeg($novaImagem, $caminhoDestino);
@@ -48,22 +47,12 @@ function redimensionarImagem($caminhoOriginal, $caminhoDestino, $novaLargura, $n
         case IMAGETYPE_GIF:
             imagegif($novaImagem, $caminhoDestino);
             break;
-        // Adicione mais casos conforme necessário para outros tipos de imagem
     }
 
-    // Libera a memória
     imagedestroy($novaImagem);
     imagedestroy($imagemOriginal);
 
     return true;
 }
-
-// Exemplo de uso:
-$caminhoOriginal = '../config/imagem-originais';
-$caminhoDestino = '../config/imagem-convertidas/type';
-$novaLargura = 400;
-$novaAltura = 200;
-
-
 
 ?>
